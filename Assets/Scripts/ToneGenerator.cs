@@ -21,8 +21,7 @@ public class ToneGenerator : MonoBehaviour
     // The volume of the tone (0.0 is silent, 1.0 is full volume)
     [SerializeField, Range(0f, 1f)] private float _volume = 0.5f;
 
-    // The time relative to the audio system clock the tone should start
-    private double _startTime_s = 0.0;
+    private int _sampleRate = 0;
     // The number of samples remaining in the current tone
     private uint _samplesRemaining = 0;
     // The current "angle" through the sine wave (a.k.a. phase)
@@ -31,25 +30,31 @@ public class ToneGenerator : MonoBehaviour
     private double _angleDelta = 0.0;
 
     /// <summary>
-    /// Call this to trigger a note at some point (preferably) in the future
+    /// Call this to trigger a note.
     /// </summary>
-    /// <param name="startTime">The start time of the note, relative to AudioSettings.dspTime</param>
-    public void Trigger(double startTime)
+    public void Play()
     {
-        // set the start time
-        _startTime_s = startTime;
         // set the angle delta, which is how much we should advance
         // through the waveform each sample
-        double cyclesPerSample = _frequency_Hz / AudioSettings.outputSampleRate;
-        _angleDelta = cyclesPerSample * Math.PI * 2.0;
+        double cyclesPerSample = _frequency_Hz / _sampleRate;
+        _angleDelta = cyclesPerSample * Math.PI * 2.0; // 2*PI is one cycle
         // set the samples remaining
-        _samplesRemaining = (uint)(_duration_s * AudioSettings.outputSampleRate);
+        _samplesRemaining = (uint)(_duration_s * _sampleRate);
         // reset the angle
         _angle = 0.0;
     }
 
     /// <summary>
-    /// This gets called once per frame during the main game update loop
+    /// This gets called every time the object is enabled.
+    /// </summary>
+    private void OnEnable()
+    {
+        // Get the sample rate here, because we're not allowed to get it from the audio thread
+        _sampleRate = AudioSettings.outputSampleRate;
+    }
+
+    /// <summary>
+    /// This gets called once per frame during the main game update loop, on the main thread.
     /// </summary>
     private void Update()
     {
@@ -59,7 +64,7 @@ public class ToneGenerator : MonoBehaviour
         if (_debugTrigger)
         {
             // Trigger now
-            Trigger(AudioSettings.dspTime);
+            Play();
             // reset the trigger
             _debugTrigger = false;
         }
@@ -67,21 +72,18 @@ public class ToneGenerator : MonoBehaviour
 
     /// <summary>
     /// This gets called every time the AudioSource this ToneGenerator is attached to sends
-    /// a new audio buffer toward the output.
+    /// a new audio buffer toward the output. This gets called from the audio thread, so
+    /// some Unity API functions aren't available, and anything in here should execute quickly.
     /// </summary>
     /// <param name="buffer">The array of samples being sent from the AudioSource</param>
     /// <param name="numChannels">The number of channels in the buffer (interleaved)</param>
     private void OnAudioFilterRead(float[] buffer, int numChannels)
     {
-        // Get the current time from the audio system
-        double currentTime = AudioSettings.dspTime;
-        // If the current time is after the start time, the tone has started
-        bool hasStarted = (currentTime > _startTime_s);
         // If there are no samples remaining, the tone has ended
         bool hasEnded = (_samplesRemaining == 0);
 
         // don't bother doing anything if we're out of range of the triggered tone
-        if (!hasStarted || hasEnded)
+        if (hasEnded)
         {
             return;
         }
