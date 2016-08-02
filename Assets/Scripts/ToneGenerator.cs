@@ -14,13 +14,20 @@ public class ToneGenerator : MonoBehaviour
     [SerializeField] private bool _debugTrigger = false;
 
     [Header("Tone Config")]
+    // The frequency of the tone in cycles per second (a.k.a. Hertz)
     [SerializeField, Range(100.0f, 1000.0f)] private double _frequency_Hz = 440.0;
+    // The duration of the tone in seconds
     [SerializeField, Range(0.1f, 2.0f)] private double _duration_s = 1.0;
+    // The volume of the tone (0.0 is silent, 1.0 is full volume)
     [SerializeField, Range(0f, 1f)] private float _volume = 0.5f;
 
+    // The time relative to the audio system clock the tone should start
     private double _startTime_s = 0.0;
+    // The number of samples remaining in the current tone
     private uint _samplesRemaining = 0;
+    // The current "angle" through the sine wave (a.k.a. phase)
     private double _angle = 0.0;
+    // The amount the angle should move each sample, advancing through the waveform
     private double _angleDelta = 0.0;
 
     /// <summary>
@@ -30,7 +37,7 @@ public class ToneGenerator : MonoBehaviour
     public void Trigger(double startTime)
     {
         // set the start time
-        _startTime_s = AudioSettings.dspTime;
+        _startTime_s = startTime;
         // set the angle delta, which is how much we should advance
         // through the waveform each sample
         double cyclesPerSample = _frequency_Hz / AudioSettings.outputSampleRate;
