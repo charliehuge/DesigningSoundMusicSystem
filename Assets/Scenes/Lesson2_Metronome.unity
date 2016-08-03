@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugTrigger: 0
-  _frequency_Hz: 440
+  _frequency_Hz: 596
   _duration_s: 0.10000000149011612
   _volume: 0.5
 --- !u!82 &785904469
