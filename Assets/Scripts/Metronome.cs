@@ -12,6 +12,8 @@ public class Metronome : MonoBehaviour
 {
     // Assign a ToneGenerator here for testing
     [SerializeField] private ToneGenerator _toneGenerator;
+    // Assign some StepSequencers to play some sequences
+    [SerializeField] private StepSequencer[] _stepSequencers;
     // The tempo in beats per minute
     [SerializeField, Range(30f, 240f)] private double _tempo_bpm = 120.0;
     // Number of subdivisions in each beat
@@ -98,6 +100,11 @@ public class Metronome : MonoBehaviour
                 if (_toneGenerator != null)
                 {
                     _toneGenerator.Play();
+                }
+                // if we have step sequencers hooked up, tick those
+                for (int j = 0; j < _stepSequencers.Length; ++j)
+                {
+                    _stepSequencers[j].Tick();
                 }
             }
 
