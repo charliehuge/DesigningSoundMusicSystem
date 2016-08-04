@@ -119,32 +119,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Steps:
   - Active: 1
-    NoteNumber: 0
-    Volume: 0
-  - Active: 0
-    NoteNumber: 0
-    Volume: 0
+    NoteNumber: 60
+    Duration: 0.1
+    Volume: 1
   - Active: 1
-    NoteNumber: 0
-    Volume: 0
+    NoteNumber: 72
+    Duration: 0.1
+    Volume: 0.5
   - Active: 1
-    NoteNumber: 0
-    Volume: 0
-  - Active: 0
-    NoteNumber: 0
-    Volume: 0
+    NoteNumber: 60
+    Duration: 0.1
+    Volume: 1
   - Active: 1
-    NoteNumber: 0
-    Volume: 0
+    NoteNumber: 48
+    Duration: 0.1
+    Volume: 0.5
   - Active: 1
-    NoteNumber: 0
-    Volume: 0
-  - Active: 1
-    NoteNumber: 0
-    Volume: 0
-  - Active: 0
-    NoteNumber: 0
-    Volume: 0
+    NoteNumber: 60
+    Duration: 0.1
+    Volume: 1
   _toneGenerator: {fileID: 678696687}
 --- !u!4 &293487702
 Transform:
@@ -570,28 +563,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Steps:
   - Active: 1
-    NoteNumber: 0
-    Volume: 0
+    NoteNumber: 72
+    Duration: 0.25
+    Volume: 0.5
   - Active: 0
     NoteNumber: 0
+    Duration: 0.25
     Volume: 0
   - Active: 1
-    NoteNumber: 0
-    Volume: 0
+    NoteNumber: 79
+    Duration: 0.1
+    Volume: 0.5
   - Active: 1
-    NoteNumber: 0
-    Volume: 0
+    NoteNumber: 72
+    Duration: 0.1
+    Volume: 0.7
   - Active: 1
-    NoteNumber: 0
-    Volume: 0
+    NoteNumber: 79
+    Duration: 0.25
+    Volume: 0.5
   - Active: 0
     NoteNumber: 0
+    Duration: 0.25
     Volume: 0
   - Active: 1
-    NoteNumber: 0
-    Volume: 0
+    NoteNumber: 84
+    Duration: 0.25
+    Volume: 0.25
   - Active: 0
     NoteNumber: 0
+    Duration: 0.25
     Volume: 0
   _toneGenerator: {fileID: 785904468}
 --- !u!4 &839880263

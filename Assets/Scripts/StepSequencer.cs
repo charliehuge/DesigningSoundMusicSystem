@@ -5,11 +5,12 @@ using UnityEngine;
 public class StepSequencer : MonoBehaviour
 {
     [Serializable]
-    public struct Step
+    public class Step
     {
-        public bool Active;
-        public int NoteNumber;
-        public float Volume;
+        public bool Active = false;
+        public int NoteNumber = 60;
+        public double Duration = 0.25;
+        public float Volume = 1f;
     }
 
     public List<Step> Steps = new List<Step>();
@@ -31,7 +32,10 @@ public class StepSequencer : MonoBehaviour
         {
             if (_toneGenerator != null)
             {
-                _toneGenerator.Play();
+                double frequency = MusicMathUtils.MidiNoteToFrequency(Steps[_currentTick].NoteNumber);
+                double duration = Steps[_currentTick].Duration;
+                float volume = Steps[_currentTick].Volume;
+                _toneGenerator.Play(frequency, duration, volume);
             }
         }
 

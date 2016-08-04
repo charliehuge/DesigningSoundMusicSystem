@@ -12,8 +12,6 @@ public class ToneGenerator : MonoBehaviour
 {
     [Header("Debug")]
     [SerializeField] private bool _debugTrigger = false;
-
-    [Header("Tone Config")]
     // The frequency of the tone in cycles per second (a.k.a. Hertz)
     [SerializeField, Range(100.0f, 1000.0f)] private double _frequency_Hz = 440.0;
     // The duration of the tone in seconds
@@ -28,20 +26,24 @@ public class ToneGenerator : MonoBehaviour
     private double _angle = 0.0;
     // The amount the angle should move each sample, advancing through the waveform
     private double _angleDelta = 0.0;
+    // Keep track of this, as it will be different from the debug volume
+    private float _currentVolume = 0f;
 
     /// <summary>
     /// Call this to trigger a note.
     /// </summary>
-    public void Play()
+    public void Play(double frequency_Hz, double duration_s, float volume)
     {
         // set the angle delta, which is how much we should advance
         // through the waveform each sample
-        double cyclesPerSample = _frequency_Hz / _sampleRate;
+        double cyclesPerSample = frequency_Hz / _sampleRate;
         _angleDelta = cyclesPerSample * Math.PI * 2.0; // 2*PI is one cycle
         // set the samples remaining
-        _samplesRemaining = (uint)(_duration_s * _sampleRate);
+        _samplesRemaining = (uint)(duration_s * _sampleRate);
         // reset the angle
         _angle = 0.0;
+        // set the volume
+        _currentVolume = volume;
     }
 
     /// <summary>
@@ -64,7 +66,7 @@ public class ToneGenerator : MonoBehaviour
         if (_debugTrigger)
         {
             // Trigger now
-            Play();
+            Play(_frequency_Hz, _duration_s, _volume);
             // reset the trigger
             _debugTrigger = false;
         }
@@ -93,7 +95,7 @@ public class ToneGenerator : MonoBehaviour
         for (int sIdx = 0; sIdx < buffer.Length; sIdx += numChannels)
         {
             // get the next sample in a sine and multiply it by the volume
-            sample = (float)Math.Sin(_angle) * _volume;           
+            sample = (float)Math.Sin(_angle) * _currentVolume;           
 
             // assign the sample to each channel in the buffer
             for (int cIdx = 0; cIdx < numChannels; ++cIdx)

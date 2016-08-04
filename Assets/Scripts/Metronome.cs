@@ -99,7 +99,7 @@ public class Metronome : MonoBehaviour
                 // if we have a ToneGenerator hooked up, tick it
                 if (_toneGenerator != null)
                 {
-                    _toneGenerator.Play();
+                    _toneGenerator.Play(440.0, 0.1, 0.5f);
                 }
                 // if we have step sequencers hooked up, tick those
                 for (int j = 0; j < _stepSequencers.Length; ++j)
