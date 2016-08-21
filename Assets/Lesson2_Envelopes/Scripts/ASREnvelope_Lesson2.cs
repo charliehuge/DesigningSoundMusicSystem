@@ -1,8 +1,6 @@
 ﻿using System;
-using UnityEngine;
-using System.Collections;
 
-public class ASREnvelope
+public class ASREnvelope_Lesson2
 {
     private enum State
     {
@@ -67,4 +65,5 @@ public class ASREnvelope
 
         return _outputLevel;
     }
+
 }

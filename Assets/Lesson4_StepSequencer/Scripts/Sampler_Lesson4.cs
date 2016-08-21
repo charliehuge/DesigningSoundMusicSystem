@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 
-public class Sampler : MonoBehaviour
+public class Sampler_Lesson4 : MonoBehaviour
 {
-    [SerializeField] private StepSequencer _sequencer;
+    [SerializeField] private StepSequencer_Lesson4 _sequencer;
     [SerializeField] private AudioClip _audioClip;
     [SerializeField, Range(0f, 2f)] private double _attackTime;
     [SerializeField, Range(0f, 2f)] private double _releaseTime;
     [SerializeField, Range(1, 8)] private int _numVoices = 2;
-    [SerializeField] private SamplerVoice _samplerVoicePrefab;
+    [SerializeField] private SamplerVoice_Lesson4 _samplerVoicePrefab;
 
-    private SamplerVoice[] _samplerVoices;
+    private SamplerVoice_Lesson4[] _samplerVoices;
     private int _nextVoiceIndex;
 
     private void Awake()
     {
-        _samplerVoices = new SamplerVoice[_numVoices];
+        _samplerVoices = new SamplerVoice_Lesson4[_numVoices];
 
         for (int i = 0; i < _numVoices; ++i)
         {
-            SamplerVoice samplerVoice = Instantiate(_samplerVoicePrefab);
+            SamplerVoice_Lesson4 samplerVoice = Instantiate(_samplerVoicePrefab);
             samplerVoice.transform.parent = transform;
             samplerVoice.transform.localPosition = Vector3.zero;
             _samplerVoices[i] = samplerVoice;
@@ -43,7 +43,7 @@ public class Sampler : MonoBehaviour
 
     private void HandleTicked(double tickTime, int midiNoteNumber, double duration)
     {
-        float pitch = MusicMathUtils.MidiNoteToPitch(midiNoteNumber, MusicMathUtils.MidiNoteC4);
+        float pitch = MusicMathUtils_Lesson4.MidiNoteToPitch(midiNoteNumber, MusicMathUtils_Lesson4.MidiNoteC4);
         _samplerVoices[_nextVoiceIndex].Play(_audioClip, pitch, tickTime, _attackTime, duration, _releaseTime);
 
         _nextVoiceIndex = (_nextVoiceIndex + 1) % _samplerVoices.Length;

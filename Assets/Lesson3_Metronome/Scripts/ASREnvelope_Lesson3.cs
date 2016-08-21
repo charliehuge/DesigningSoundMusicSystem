@@ -1,8 +1,6 @@
 ﻿using System;
-using UnityEngine;
-using System.Collections;
 
-public class ASREnvelope
+public class ASREnvelope_Lesson3
 {
     private enum State
     {

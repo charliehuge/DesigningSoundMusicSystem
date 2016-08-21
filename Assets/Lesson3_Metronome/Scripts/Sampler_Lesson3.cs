@@ -1,24 +1,26 @@
 ﻿using UnityEngine;
+using System.Collections;
 
-public class Sampler : MonoBehaviour
+public class Sampler_Lesson3 : MonoBehaviour
 {
-    [SerializeField] private StepSequencer _sequencer;
+    [SerializeField] private Metronome_Lesson3 _metronome;
     [SerializeField] private AudioClip _audioClip;
     [SerializeField, Range(0f, 2f)] private double _attackTime;
+    [SerializeField, Range(0f, 2f)] private double _sustainTime;
     [SerializeField, Range(0f, 2f)] private double _releaseTime;
     [SerializeField, Range(1, 8)] private int _numVoices = 2;
-    [SerializeField] private SamplerVoice _samplerVoicePrefab;
+    [SerializeField] private SamplerVoice_Lesson3 _samplerVoicePrefab;
 
-    private SamplerVoice[] _samplerVoices;
+    private SamplerVoice_Lesson3[] _samplerVoices;
     private int _nextVoiceIndex;
 
     private void Awake()
     {
-        _samplerVoices = new SamplerVoice[_numVoices];
+        _samplerVoices = new SamplerVoice_Lesson3[_numVoices];
 
         for (int i = 0; i < _numVoices; ++i)
         {
-            SamplerVoice samplerVoice = Instantiate(_samplerVoicePrefab);
+            SamplerVoice_Lesson3 samplerVoice = Instantiate(_samplerVoicePrefab);
             samplerVoice.transform.parent = transform;
             samplerVoice.transform.localPosition = Vector3.zero;
             _samplerVoices[i] = samplerVoice;
@@ -27,24 +29,23 @@ public class Sampler : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_sequencer != null)
+        if (_metronome != null)
         {
-            _sequencer.Ticked += HandleTicked;
+            _metronome.Ticked += HandleTicked;
         }
     }
 
     private void OnDisable()
     {
-        if (_sequencer != null)
+        if (_metronome != null)
         {
-            _sequencer.Ticked -= HandleTicked;
+            _metronome.Ticked -= HandleTicked;
         }
     }
 
-    private void HandleTicked(double tickTime, int midiNoteNumber, double duration)
+    private void HandleTicked(double tickTime)
     {
-        float pitch = MusicMathUtils.MidiNoteToPitch(midiNoteNumber, MusicMathUtils.MidiNoteC4);
-        _samplerVoices[_nextVoiceIndex].Play(_audioClip, pitch, tickTime, _attackTime, duration, _releaseTime);
+        _samplerVoices[_nextVoiceIndex].Play(_audioClip, tickTime, _attackTime, _sustainTime, _releaseTime);
 
         _nextVoiceIndex = (_nextVoiceIndex + 1) % _samplerVoices.Length;
     }
