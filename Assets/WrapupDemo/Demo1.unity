@@ -121,7 +121,7 @@ MonoBehaviour:
   _steps:
   - Active: 1
     MidiNoteNumber: 60
-    Duration: 0.05
+    Duration: 0.05000000074505806
   - Active: 0
     MidiNoteNumber: 0
     Duration: 0
@@ -131,6 +131,18 @@ MonoBehaviour:
   - Active: 0
     MidiNoteNumber: 0
     Duration: 0
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 1
+    MidiNoteNumber: 69
+    Duration: 0.10000000149011612
 --- !u!4 &342055389
 Transform:
   m_ObjectHideFlags: 0
@@ -192,6 +204,54 @@ Transform:
   - {fileID: 1241265791}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!1 &558791626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 558791628}
+  - 114: {fileID: 558791627}
+  m_Layer: 0
+  m_Name: Sampler (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &558791627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 558791626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1388cae0895c55643aa27e15b50b17d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sequencer: {fileID: 2102489339}
+  _audioClip: {fileID: 8300000, guid: 6b59bd0e948b17c46a791d9b0de4a6b7, type: 3}
+  _attackTime: 0.11999999731779099
+  _releaseTime: 0.06400000303983688
+  _numVoices: 4
+  _samplerVoicePrefab: {fileID: 114000014209665864, guid: 652b9ea2d55a7ab46926c5c63898e509,
+    type: 2}
+--- !u!4 &558791628
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 558791626}
+  m_LocalRotation: {x: -0.007495197, y: -0.1321859, z: 0.056112632, w: 0.98960704}
+  m_LocalPosition: {x: 0, y: 0, z: 5.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: -14.907001, z: 6.3110003}
+  m_Children:
+  - {fileID: 1644338119}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &810902785
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +436,85 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1241265790}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1644338118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1644338119}
+  - 33: {fileID: 1644338122}
+  - 65: {fileID: 1644338121}
+  - 23: {fileID: 1644338120}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1644338119
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1644338118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 558791628}
+  m_RootOrder: 0
+--- !u!23 &1644338120
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1644338118}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &1644338121
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1644338118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1644338122
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1644338118}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2078750557
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,3 +602,93 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &2102489338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2102489340}
+  - 114: {fileID: 2102489339}
+  m_Layer: 0
+  m_Name: Sequence (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2102489339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2102489338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2f9591d0f57584eb16760b7d831101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _metronome: {fileID: 885496540}
+  _steps:
+  - Active: 1
+    MidiNoteNumber: 60
+    Duration: 0.05000000074505806
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0.5
+  - Active: 1
+    MidiNoteNumber: 72
+    Duration: 0.25
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 1
+    MidiNoteNumber: 63
+    Duration: 0.10000000149011612
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 1
+    MidiNoteNumber: 69
+    Duration: 0.5
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+  - Active: 0
+    MidiNoteNumber: 0
+    Duration: 0
+--- !u!4 &2102489340
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2102489338}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5

@@ -5,7 +5,7 @@ using UnityEngine;
 public class StepSequencer : MonoBehaviour
 {
     [Serializable]
-    public struct Step
+    public class Step
     {
         public bool Active;
         public int MidiNoteNumber;
@@ -18,7 +18,7 @@ public class StepSequencer : MonoBehaviour
 
     [SerializeField] private Metronome _metronome;
 
-    [SerializeField] private List<Step> _steps;
+    [SerializeField, HideInInspector] private List<Step> _steps;
 
     private int _currentTick = 0;
 
