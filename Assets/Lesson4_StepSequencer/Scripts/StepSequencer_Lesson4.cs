@@ -5,7 +5,7 @@ using System;
 public class StepSequencer_Lesson4 : MonoBehaviour
 {
     [Serializable]
-    public struct Step
+    public class Step
     {
         public bool Active;
         public int MidiNoteNumber;
