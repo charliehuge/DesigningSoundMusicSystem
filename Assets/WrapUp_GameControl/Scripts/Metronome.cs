@@ -25,6 +25,12 @@ public class Metronome : MonoBehaviour
     // the next tick time, relative to AudioSettings.dspTime
     private double _nextTickTime;
 
+    public void SetTempo(double tempo)
+    {
+        _tempo = tempo;
+        Recalculate();
+    }
+
     /// <summary>
     /// Recalculate the tick length and reset the next tick time
     /// </summary>

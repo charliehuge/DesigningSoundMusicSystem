@@ -16,6 +16,8 @@ public class StepSequencer : MonoBehaviour
 
     public event HandleTick Ticked;
 
+    public bool Suspend;
+
     [SerializeField] private Metronome _metronome;
 
     [SerializeField, HideInInspector] private List<Step> _steps;
@@ -58,7 +60,7 @@ public class StepSequencer : MonoBehaviour
 
         if (step.Active)
         {
-            if (Ticked != null)
+            if (!Suspend && Ticked != null)
             {
                 Ticked(tickTime, step.MidiNoteNumber, step.Duration);
             }
