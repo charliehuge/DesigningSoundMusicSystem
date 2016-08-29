@@ -70,13 +70,16 @@ public class Metronome_Lesson3 : MonoBehaviour {
         // look ahead the length of one tick, because we'll be scheduling samples
         currentTime += _tickLength;
 
+        // there may be more than one tick within the next frame, so this will catch them all
         while (currentTime > _nextTickTime)
         {
+            // if someone has subscribed to ticks from the metronome, let them know we got a tick
             if (Ticked != null)
             {
                 Ticked(_nextTickTime);
             }
 
+            // increment the next tick time
             _nextTickTime += _tickLength;
         }
     }
