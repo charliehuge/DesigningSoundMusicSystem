@@ -14,7 +14,7 @@ public class Metronome : MonoBehaviour
     /// This also passes the time that the tick should occur, relative to AudioSettings.dspTime.
     /// That means you can schedule audio system calls in the future with this info.
     /// </summary>
-    public event Action<double> Ticked; 
+    public event Action<double> Ticked;
 
     [SerializeField, Tooltip("The tempo in beats per minute"), Range(15f, 200f)] private double _tempo = 120.0;
     [SerializeField, Tooltip("The number of ticks per beat"), Range(1, 8)] private int _subdivisions = 4;
@@ -25,6 +25,10 @@ public class Metronome : MonoBehaviour
     // the next tick time, relative to AudioSettings.dspTime
     private double _nextTickTime;
 
+    /// <summary>
+    /// Set the tempo and recalculate
+    /// </summary>
+    /// <param name="tempo">The new tempo in BPM</param>
     public void SetTempo(double tempo)
     {
         _tempo = tempo;
@@ -80,16 +84,19 @@ public class Metronome : MonoBehaviour
     {
         double currentTime = AudioSettings.dspTime;
 
-        // look ahead the length of one tick, because we'll be scheduling samples
-        currentTime += _tickLength;
+        // look ahead the length of one frame (approximately), because we'll be scheduling samples
+        currentTime += Time.deltaTime;
 
+        // there may be more than one tick within the next frame, so this will catch them all
         while (currentTime > _nextTickTime)
         {
+            // if someone has subscribed to ticks from the metronome, let them know we got a tick
             if (Ticked != null)
             {
                 Ticked(_nextTickTime);
             }
 
+            // increment the next tick time
             _nextTickTime += _tickLength;
         }
     }

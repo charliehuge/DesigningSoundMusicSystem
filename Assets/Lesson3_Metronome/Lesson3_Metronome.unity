@@ -119,10 +119,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _metronome: {fileID: 1853198347}
   _audioClip: {fileID: 8300000, guid: 6b59bd0e948b17c46a791d9b0de4a6b7, type: 3}
-  _attackTime: 0.05000000074505806
+  _attackTime: 0
   _sustainTime: 0
-  _releaseTime: 0.27000001072883606
-  _numVoices: 2
+  _releaseTime: 0.10999999940395355
+  _numVoices: 4
   _samplerVoicePrefab: {fileID: 114000013305218376, guid: d63130a6e4d18604fa70b77897c09b66,
     type: 2}
 --- !u!4 &26991034
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tempo: 120
-  _subdivisions: 1
+  _subdivisions: 4
 --- !u!4 &1853198348
 Transform:
   m_ObjectHideFlags: 0

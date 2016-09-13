@@ -68,16 +68,19 @@ public class Metronome_Lesson4 : MonoBehaviour
     {
         double currentTime = AudioSettings.dspTime;
 
-        // look ahead the length of one tick, because we'll be scheduling samples
-        currentTime += _tickLength;
+        // look ahead the length of one frame (approximately), because we'll be scheduling samples
+        currentTime += Time.deltaTime;
 
+        // there may be more than one tick within the next frame, so this will catch them all
         while (currentTime > _nextTickTime)
         {
+            // if someone has subscribed to ticks from the metronome, let them know we got a tick
             if (Ticked != null)
             {
                 Ticked(_nextTickTime);
             }
 
+            // increment the next tick time
             _nextTickTime += _tickLength;
         }
     }
