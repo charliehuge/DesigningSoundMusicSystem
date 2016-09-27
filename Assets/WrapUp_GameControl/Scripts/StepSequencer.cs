@@ -20,10 +20,12 @@ public class StepSequencer : MonoBehaviour
 
     [SerializeField] private Metronome _metronome;
 
+    // hide this field in the inspector. We'll be making a custom inspector for these
     [SerializeField, HideInInspector] private List<Step> _steps;
 
     private int _currentTick = 0;
 
+    // in the editor only, add a property to get the list of steps
 #if UNITY_EDITOR
     public List<Step> GetSteps()
     {
